@@ -1,27 +1,31 @@
-from datetime import datetime
-import time
-
 from selenium import webdriver
+import time
 
 driver = webdriver.Chrome()
 
-print("What country do you want to travel?")
+driver.get("https://rahulshettyacademy.com/AutomationPractice/")
 
-choice = "ind"
+checkboxes = driver.find_elements_by_xpath("//input[@type='checkbox']")
 
-driver.get("https://rahulshettyacademy.com/dropdownsPractise/")
+print(f"The number of checkboxes on this page is {(len(checkboxes))}.")
 
-driver.find_element_by_id("autosuggest").send_keys(choice)
+for checkbox in checkboxes:
+    checkbox.click()
+    #validating the selection
+    assert checkbox.is_selected()
 
-time.sleep(2)
+time.sleep(3)
 
-countries = driver.find_elements_by_css_selector("li[class='ui-menu-item'] a")
+for checkbox in checkboxes:
+    checkbox.click()
+    #validating the selection
+    assert checkbox.is_selected() is False
 
-for country in countries:
-    if country.text == "India":
-        country.click()
-        break
+time.sleep(1)
 
-assert driver.find_element_by_id("autosuggest").get_attribute('value') == "India"
-
-driver.close()
+# chose only the option3
+for checkbox in checkboxes:
+    if checkbox.get_attribute('value') == "option3":
+        checkbox.click()
+        #validating the selection
+        assert checkbox.is_selected()
