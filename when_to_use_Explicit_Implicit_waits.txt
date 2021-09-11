@@ -1,0 +1,10 @@
+'''
+When you think that you are spp is fluid and strong:
+
+    Prefer the Explicit wait in some points which you should pay more attention
+
+When you are in an environment where the things are more stressful like the Development:
+
+    Prefer to use implicit wait to not repeat a lot of explicits waits (Good Practice)
+
+'''
