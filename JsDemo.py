@@ -3,6 +3,7 @@
 # How to acess DOM from Selenium
 
 from selenium import webdriver
+from selenium.webdriver import chrome
 from termcolor import colored
 
 driver = webdriver.Chrome()
@@ -22,3 +23,13 @@ print(colored(driver.find_element_by_name("name").get_attribute("value"),"green"
 
 print(colored(f'This print is using only JS to get the element:\n',"red"),
       colored(driver.execute_script('return document.getElementsByName("name")[0].value',"yellow")))
+
+shop_link = driver.find_element_by_link_text("Shop")
+
+print(colored(shop_link.text,"green", attrs=['reverse', 'blink']))
+
+#Using arguments to click with JS selectors
+driver.execute_script("arguments[0].click();",shop_link)
+
+# Script so scroll down to bottom and footer
+driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
